@@ -1,7 +1,7 @@
-# Compiled class file
+# Java class files
 *.class
 
-# Log file
+# Log files
 *.log
 
 # BlueJ files
@@ -19,6 +19,40 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# Virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-replay_pid*
+
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.properties
+
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Eclipse
+*.launch
+.settings/
+.project
+.classpath
+
+# VS Code
+.vscode/
+
+# Mac
+.DS_Store
+
+# JMeter temp or backup files
+jmeter/bin/*.bak
+jmeter/bin/*.tmp
+*.jtl
+*.jmx~
+
+# OS
+Thumbs.db
+ehthumbs.db
