@@ -66,17 +66,26 @@ public class OmsController {
         }
     }
 
-    // 4. Process Order (Insert -> Select -> Update)
-    @PostMapping("/process/{createOrderId}/{updateOrderId}")
-    public ResponseEntity<String> processOrderDetails(
-            @PathVariable Long createOrderId,
-            @PathVariable Long updateOrderId) {
+    // 4. Process Order
+    @PostMapping("/process/{orderId}")
+    public ResponseEntity<String> processOrderDetails(@PathVariable Long orderId) {
         try {
-            insertOrderDetails(createOrderId);
-            OmsInfo order = entityManager.find(OmsInfo.class, updateOrderId);
-            if (order == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found.");
-            updateOrderStatus(updateOrderId);
-            return ResponseEntity.ok("Order processed. Selected Order: " + order);
+            OmsInfo order = entityManager.find(OmsInfo.class, orderId);
+            if (order == null)
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found.");
+
+            // Example business logic: update item details and amount
+            String updatedItemDetails = "{\"items\": \"Updated Item #" + new Random().nextInt(999) + "\"}";
+            String updatedAmount = String.format("%.2f", 200 + new Random().nextDouble() * 800);
+
+            order.setItemDetails(updatedItemDetails);
+            order.setTotalAmount(updatedAmount);
+            order.setUpdatedAt(LocalDateTime.now());
+
+            entityManager.merge(order);
+
+            return ResponseEntity.ok("Order processed. Updated item and amount: " + order);
+
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Order processing failed.");
