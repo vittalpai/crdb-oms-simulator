@@ -6,7 +6,7 @@ USE oms_db;
 
 -- Create table with hash sharding
 CREATE TABLE IF NOT EXISTS public.oms_details (
-    order_id BIGINT PRIMARY KEY,
+    order_id BIGINT PRIMARY KEY USING HASH WITH (bucket_count=16),
     customer_id STRING,
     order_status STRING,
     total_amount STRING,
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS public.oms_details (
     created_at TIMESTAMPTZ,
     updated_at TIMESTAMPTZ,
     version INT
-) USING HASH WITH BUCKET_COUNT = 16;
+);
 
 -- Index for filtering by order status
 CREATE INDEX IF NOT EXISTS idx_oms_order_status ON public.oms_details (order_status);
