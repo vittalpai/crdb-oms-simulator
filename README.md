@@ -1,5 +1,5 @@
 
-# 🧾 CRDB OMS Simulator
+# CRDB OMS Simulator
 
 A lightweight **Order Management System (OMS)** built with **Spring Boot** and **CockroachDB**, designed for simulating order lifecycles and load testing with **Apache JMeter**.
 
