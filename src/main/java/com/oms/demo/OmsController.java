@@ -142,7 +142,7 @@ public class OmsController {
         Query query = entityManager.createNativeQuery(insertQuery);
         query.setParameter("orderId", orderId);
         query.setParameter("customerId", "CUST-" + new Random().nextInt(1000));
-        query.setParameter("orderStatus", "PENDING");
+        query.setParameter("orderStatus", "CREATED");
         query.setParameter("totalAmount", String.format("%.2f", 100 + new Random().nextDouble() * 900));
         query.setParameter("itemDetails", "{\"items\": \"Sample Item #" + new Random().nextInt(999) + "\"}");
         query.setParameter("createdAt", LocalDateTime.now());
