@@ -19,6 +19,11 @@ public class OmsController {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @GetMapping("/health")
+    public ResponseEntity<String> healthCheck() {
+        return ResponseEntity.ok("OMS Service is up and running!");
+    }
+
     // 1. Create Order
     @PostMapping("/create/{orderId}")
     public ResponseEntity<String> createOrder(@PathVariable Long orderId) {
